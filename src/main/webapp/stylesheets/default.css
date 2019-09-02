@@ -1,0 +1,20 @@
+body, html {
+    background: #fafafa !important;
+}
+
+h6.page-name {
+    text-transform: uppercase;
+}
+
+table.courier-table tr:last-child {
+    border-bottom: none;
+}
+
+table.courier-table tr:last-child td {
+    border-bottom: none;
+}
+
+div.courier-card-action {
+    display: flex;
+    justify-content: space-between;
+}

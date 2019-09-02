@@ -1,0 +1,36 @@
+@import com.github.giwiro.model.Courier
+@(courier: Courier)
+<div class="col s12 m6 l4">
+    <div class="card">
+        <div class="card-image">
+            <img src="@courier.image">
+            <span class="card-title">@courier.name</span>
+        </div>
+        <div class="card-content">
+            <table class="courier-table responsive-table centered">
+                <tbody>
+                    <tr>
+                        <td>Pending</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Delivered</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-action courier-card-action">
+            <a class="waves-effect btn z-depth-0 white grey-text text-darken-3">
+                Orders
+            </a>
+            <a class="waves-effect btn z-depth-0 white grey-text text-darken-3">
+                Register
+            </a>
+        </div>
+    </div>
+</div>
