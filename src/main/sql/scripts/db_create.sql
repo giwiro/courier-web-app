@@ -1,6 +1,6 @@
-DROP TABLE courier;
+/*DROP TABLE courier;
 DROP TABLE product_status;
-DROP TABLE product;
+DROP TABLE product;*/
 
 CREATE TABLE IF NOT EXISTS courier
 (
