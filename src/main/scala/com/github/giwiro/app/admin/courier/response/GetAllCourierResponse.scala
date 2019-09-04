@@ -1,4 +1,4 @@
-package com.github.giwiro.app.courier.response
+package com.github.giwiro.app.admin.courier.response
 
 import com.github.giwiro.model.Courier
 

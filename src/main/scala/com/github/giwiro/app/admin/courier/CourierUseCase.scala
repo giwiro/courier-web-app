@@ -1,8 +1,8 @@
-package com.github.giwiro.app.courier
+package com.github.giwiro.app.admin.courier
 
 import java.sql.Connection
 
-import com.github.giwiro.app.courier.response.GetAllCourierResponse
+import com.github.giwiro.app.admin.courier.response.GetAllCourierResponse
 import com.github.giwiro.model.Courier
 import com.github.giwiro.database.DatabaseConnectionSupport
 import com.github.giwiro.database.dao.CourierDAO
