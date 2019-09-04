@@ -11,8 +11,8 @@ object CourierUseCase {
 
   def getAllCouriers = DatabaseConnectionSupport.withDatabaseConnection[GetAllCourierResponse] {
     conn: Connection =>
-      var courierDAO: CourierDAO = new CourierDAO(conn)
-      var list: List[Courier] = courierDAO.getAll()
+      var courierDAO = new CourierDAO(conn)
+      var list = courierDAO.getAll()
       new GetAllCourierResponse(list)
   }
 }

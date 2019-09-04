@@ -9,5 +9,4 @@ class CourierServlet extends ScalatraServlet {
     val resp: GetAllCourierResponse = CourierUseCase.getAllCouriers
     views.html.admin.courier.all(resp.couriers)
   }
-
 }

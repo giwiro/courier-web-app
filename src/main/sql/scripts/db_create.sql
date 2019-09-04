@@ -1,7 +1,3 @@
-/*DROP TABLE courier;
-DROP TABLE product_status;
-DROP TABLE product;*/
-
 CREATE TABLE IF NOT EXISTS courier
 (
     id    INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,11 +18,11 @@ CREATE TABLE IF NOT EXISTS product
     detail        TEXT,
     image         TEXT,
 
-    FOREIGN KEY (status) REFERENCES product_status (id),
+    FOREIGN KEY (status) REFERENCES product_state (id),
     FOREIGN KEY (courier) REFERENCES courier (id)
 );
 
-CREATE TABLE IF NOT EXISTS product_status
+CREATE TABLE IF NOT EXISTS product_state
 (
     id   INTEGER PRIMARY KEY,
     name TEXT NOT NULL

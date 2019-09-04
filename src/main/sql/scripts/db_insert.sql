@@ -1,12 +1,12 @@
-/* product_status */
+/* product_state */
 
-INSERT INTO product_status (id, name)
+INSERT INTO product_state (id, name)
 VALUES (1, 'PENDING');
 
-INSERT INTO product_status (id, name)
+INSERT INTO product_state (id, name)
 VALUES (2, 'RECEIVED');
 
-INSERT INTO product_status (id, name)
+INSERT INTO product_state (id, name)
 VALUES (3, 'DELIVERED');
 
 /* courier */
