@@ -6,6 +6,8 @@ h6.page-name {
     text-transform: uppercase;
 }
 
+/* Courier List */
+
 table.courier-table tr:last-child {
     border-bottom: none;
 }
@@ -17,4 +19,21 @@ table.courier-table tr:last-child td {
 div.courier-card-action {
     display: flex;
     justify-content: space-between;
+}
+
+/* New Product */
+div.new-product-header {
+    height: 150px;
+    background: linear-gradient(40deg, #ffd86f, #fc6262);
+}
+
+div.new-product-header + span.card-title {
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0!important;
+    right: 0!important;
+    top: 0!important;
+    bottom: unset!important;
+    text-align: center;
 }

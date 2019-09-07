@@ -5,7 +5,7 @@ import com.github.giwiro.app.admin.courier.response.GetAllCourierResponse
 import org.scalatra._
 
 class CourierServlet extends ScalatraServlet {
-  get("/couriers") {
+  get("/list") {
     val resp: GetAllCourierResponse = CourierUseCase.getAllCouriers
     views.html.admin.courier.all(resp.couriers)
   }
