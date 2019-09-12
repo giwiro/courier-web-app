@@ -1,12 +1,13 @@
 package com.github.giwiro.model
 
-class Product(var id: Int,
-              var status: ProductState,
-              var courier: Int,
+class Product(var id: Option[Int],
+              var statusId: Int,
+              var status: Option[ProductState],
+              var courierId: Int,
               var name: String,
               var url: String,
               var quantity: Int,
               var withBox: Int,
-              var deliveryDate: Unit,
-              var detail: String,
+              var deliveryDate: String,
+              var detail: Option[String],
               var image: String)
