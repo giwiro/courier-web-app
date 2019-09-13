@@ -1,0 +1,8 @@
+@(courierId: Int, activeTab: String)
+@layouts.html.default("Product List") {
+    <div class="row">
+        <div class="col s12">
+            @views.html.courier.productListNav(courierId, activeTab)
+        </div>
+    </div>
+}

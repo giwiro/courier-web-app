@@ -1,0 +1,32 @@
+@(courierId: Int, activeTab: String)
+
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+    </div>
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+            <li class="tab col s3">
+                @if(activeTab == "pending") {
+                    <a target="_self" class="active" href="/courier/@courierId/product/list/pending">Pending</a>
+                } else {
+                    <a target="_self" href="/courier/@courierId/product/list/pending">Pending</a>
+                }
+            </li>
+            <li class="tab col s3">
+            @if(activeTab == "received") {
+                <a target="_self" class="active" href="/courier/@courierId/product/list/received">Received</a>
+            } else {
+                <a target="_self" href="/courier/@courierId/product/list/received">Received</a>
+            }
+            </li>
+            <li class="tab col s3">
+            @if(activeTab == "delivered") {
+                <a target="_self" class="active" href="/courier/@courierId/product/list/delivered">Delivered</a>
+            } else {
+                <a target="_self" href="/courier/@courierId/product/list/delivered">Delivered</a>
+            }
+            </li>
+        </ul>
+    </div>
+</nav>
