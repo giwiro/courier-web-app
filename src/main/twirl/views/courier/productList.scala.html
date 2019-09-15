@@ -1,8 +1,15 @@
-@(courierId: Int, activeTab: String)
+@import com.github.giwiro.model.Product
+@(courierId: Int, productList: List[Product], activeTab: String)
 @layouts.html.default("Product List") {
     <div class="row">
         <div class="col s12">
             @views.html.courier.productListNav(courierId, activeTab)
+        </div>
+
+        <div class="col s12">
+            @for(p <- productList) {
+                @views.html.courier.product(p)
+            }
         </div>
     </div>
 }

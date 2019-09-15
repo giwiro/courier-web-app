@@ -6,6 +6,10 @@ h6.page-name {
     text-transform: uppercase;
 }
 
+nav {
+    margin-top: .5rem;
+}
+
 /* Courier List */
 
 table.courier-table tr:last-child {
@@ -48,4 +52,9 @@ span.card-title + span.card-subtitle {
     width: 100%;
     text-align: center;
     color: white;
+}
+
+/* Product list */
+div.card-image.product-image img {
+    max-height: 250px;
 }

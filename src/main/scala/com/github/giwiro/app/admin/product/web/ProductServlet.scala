@@ -36,7 +36,6 @@ class ProductServlet extends ScalatraServlet with FormSupport with I18nSupport {
         if (courierId == None) {
           BadRequest()
         } else {
-          println("!!!! Servlet")
           val req = new PostNewProduct(
             courierId.getOrElse(0),
             form.name,
@@ -50,7 +49,7 @@ class ProductServlet extends ScalatraServlet with FormSupport with I18nSupport {
             form.detail,
             form.image)
           val resp = ProductUseCase.addProduct(req)
-          redirect(s"/courier/${resp.product.courierId}")(request, response)
+          redirect(s"/courier/${resp.product.courierId}/product/list/pending")(request, response)
         }
       }
     )

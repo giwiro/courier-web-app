@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS courier
 CREATE TABLE IF NOT EXISTS product
 (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    status        INTEGER,
-    courier       INTEGER,
+    state_id      INTEGER,
+    courier_id    INTEGER,
     name          TEXT    NOT NULL,
     url           TEXT    NOT NULL,
     quantity      INTEGER NOT NULL,
@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS product
     detail        TEXT,
     image         TEXT,
 
-    FOREIGN KEY (status) REFERENCES product_state (id),
-    FOREIGN KEY (courier) REFERENCES courier (id)
+    FOREIGN KEY (state_id) REFERENCES product_state (id),
+    FOREIGN KEY (courier_id) REFERENCES courier (id)
 );
 
 CREATE TABLE IF NOT EXISTS product_state

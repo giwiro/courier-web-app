@@ -11,15 +11,19 @@
                 <tbody>
                     <tr>
                         <td>Pending</td>
-                        <td>10</td>
+                        <td>@courier.totalPending</td>
+                    </tr>
+                    <tr>
+                        <td>Received</td>
+                        <td>@courier.totalReceived</td>
                     </tr>
                     <tr>
                         <td>Delivered</td>
-                        <td>10</td>
+                        <td>@courier.totalDelivered</td>
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td>20</td>
+                        <td>@{courier.totalPending.getOrElse(0) + courier.totalReceived.getOrElse(0) + courier.totalDelivered.getOrElse(0)}</td>
                     </tr>
                 </tbody>
             </table>

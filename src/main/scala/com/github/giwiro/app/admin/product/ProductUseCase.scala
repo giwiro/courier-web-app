@@ -23,8 +23,8 @@ object ProductUseCase {
         val productDAO = new ProductDAO(conn)
         val product = new Product(
           id = None,
-          statusId = ProductStates.PENDING,
-          status = None,
+          stateId = ProductStates.PENDING,
+          state = None,
           courierId = request.courierId,
           name = request.name,
           url = request.url,
@@ -33,7 +33,6 @@ object ProductUseCase {
           deliveryDate = request.deliveryDate,
           detail = request.detail,
           image = request.image)
-        println("!!!! GONNA INSERT")
         val inserted = productDAO.insert(product)
         new AddProductResponse(inserted)
     }

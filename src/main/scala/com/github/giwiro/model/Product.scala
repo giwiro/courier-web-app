@@ -1,8 +1,8 @@
 package com.github.giwiro.model
 
 class Product(var id: Option[Int],
-              var statusId: Int,
-              var status: Option[ProductState],
+              var stateId: Int,
+              var state: Option[ProductState],
               var courierId: Int,
               var name: String,
               var url: String,
