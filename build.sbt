@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.3" % "runtime",
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
   "com.mchange" % "c3p0" % "0.9.5.4",
-  "org.xerial" % "sqlite-jdbc" % "3.28.0",
+  "org.xerial" % "sqlite-jdbc" % "3.28.0" % "container;compile",
 )
 
 enablePlugins(SbtTwirl)
