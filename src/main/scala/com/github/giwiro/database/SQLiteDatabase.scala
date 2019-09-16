@@ -10,7 +10,7 @@ object SQLiteDatabase extends Database {
   override var config = ConfigParser.getConfig
 
   override def configureDb: Unit = {
-
+    println(s"SQLite configured with: ${config.databaseUrl}")
     ds.setJdbcUrl(config.databaseUrl)
     // NOTE: Not used in sqlite
     /*ds.setUser(config.databaseUser)
