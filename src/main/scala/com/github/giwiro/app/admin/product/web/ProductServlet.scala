@@ -11,12 +11,12 @@ import org.scalatra.{BadRequest, NotFound, ScalatraServlet}
 class ProductServlet extends ScalatraServlet with FormSupport with I18nSupport {
   get("/new/courier/:courier_id") {
     val courierId: Option[Int] = params.getAs[Int]("courier_id")
-    if (courierId == None) {
+    if (!courierId.isDefined) {
       BadRequest()
     } else {
-      val request = new GetCourierRequest(courierId.getOrElse(0))
+      val request = new GetCourierRequest(courierId.get)
       val getCourierResponse = CourierUseCase.getCourier(request)
-      if (getCourierResponse.courier == None) {
+      if (!getCourierResponse.courier.isDefined) {
         NotFound()
       } else {
         views.html.admin.product.add(getCourierResponse.courier.orNull)
@@ -27,17 +27,16 @@ class ProductServlet extends ScalatraServlet with FormSupport with I18nSupport {
   post("/new/courier/:courier_id") {
     validate(Validator.newCourierPageForm)(
       errors => {
-        println("!!!! invalid")
         errors.foreach { e => println(e) }
         BadRequest()
       },
       form => {
         val courierId: Option[Int] = params.getAs[Int]("courier_id")
-        if (courierId == None) {
+        if (!courierId.isDefined) {
           BadRequest()
         } else {
           val req = new PostNewProduct(
-            courierId.getOrElse(0),
+            courierId.get,
             form.name,
             form.url,
             form.quantity,

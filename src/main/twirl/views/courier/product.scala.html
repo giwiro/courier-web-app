@@ -1,4 +1,4 @@
-@import com.github.giwiro.model.Product
+@import com.github.giwiro.model.{Product, ProductStates}
 @(product: Product)
 <div class="card horizontal">
     <div class="product-image card-image">
@@ -6,10 +6,46 @@
     </div>
     <div class="card-stacked">
         <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.</p>
+            <span class="card-title">@product.name</span>
+            <div class="row">
+                <div class="col s12 m6">
+                    <table class="responsive-table">
+                        <tbody>
+                            <tr>
+                                <td>Quantity</td>
+                                <td>@product.quantity</td>
+                            </tr>
+                            <tr>
+                                <td>With box</td>
+                                <td>@{
+                                    if(product.withBox == 1) "YES" else "NO"
+                                }</td>
+                            </tr>
+                            <tr>
+                                <td>Delivery date</td>
+                                <td>@product.deliveryDate</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="card-action">
-            <a href="#">This is a link</a>
-        </div>
+        @if(product.stateId == ProductStates.PENDING) {
+            <div class="card-action courier-card-action">
+                <form action="/courier/@product.courierId/product/@product.id/receive" method="POST">
+                    <button type="submit" class="btn z-depth-0 white grey-text text-darken-3">Change to Received</button>
+                </form>
+                @*<form action="/courier/@product.courierId/product/@product.id/delete" method="POST">
+                    <button type="submit" class="btn z-depth-0 white red-text text-darken-1">Delete</button>
+                </form>*@
+            </div>
+        }
+        @if(product.stateId == ProductStates.RECEIVED) {
+            <div class="card-action">
+                <form action="/courier/@product.courierId/product/@product.id/deliver" method="POST">
+                    <button type="submit" class="btn z-depth-0 white grey-text text-darken-3">Change to Delivered</button>
+                </form>
+            </div>
+        }
     </div>
 </div>

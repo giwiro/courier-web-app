@@ -55,6 +55,12 @@ span.card-title + span.card-subtitle {
 }
 
 /* Product list */
+div.card-image.product-image {
+    display: flex;
+    align-items: center;
+}
+
 div.card-image.product-image img {
     max-height: 250px;
+    max-width: 200px!important;
 }

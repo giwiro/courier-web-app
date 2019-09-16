@@ -9,7 +9,8 @@ class CourierDAO(conn: Connection) {
       """
         |SELECT c.*,
         |       SUM(CASE WHEN p.state_id = 1 then 1 else 0 end) as total_pending,
-        |       SUM(CASE WHEN p.state_id = 2 then 1 else 0 end) as total_received
+        |       SUM(CASE WHEN p.state_id = 2 then 1 else 0 end) as total_received,
+        |       SUM(CASE WHEN p.state_id = 3 then 1 else 0 end) as total_delivered
         |FROM courier AS c
         |LEFT JOIN product AS p ON c.id = p.courier_id
         |WHERE c.id = ?

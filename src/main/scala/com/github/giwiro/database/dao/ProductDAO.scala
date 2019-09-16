@@ -1,9 +1,10 @@
 package com.github.giwiro.database.dao
 
-import java.sql.{Connection, ResultSet}
+import java.sql.{Connection, PreparedStatement, ResultSet}
 
 import com.github.giwiro.model.{Courier, Product}
 import com.github.giwiro.utils.DateUtil
+import com.mchange.v2.c3p0.C3P0ProxyStatement
 
 class ProductDAO(conn: Connection) {
   def insert(product: Product): Product = {
@@ -46,10 +47,35 @@ class ProductDAO(conn: Connection) {
     val stmt = conn.prepareStatement(q_state)
     stmt.setInt(1, courierId)
     stmt.setInt(2, stateId)
-    println("courierId: " + courierId)
-    println("stateId: " + stateId)
     val rs = stmt.executeQuery()
     _mapToProductList(rs)
+  }
+
+  def deleteProduct(productId: Int): Unit = {
+    val q = "DELETE FROM product WHERE product.id = ?;"
+    val stmt = conn.prepareStatement(q)
+    stmt.setInt(1, productId)
+    stmt.executeUpdate()
+  }
+
+  def getBytId(productId: Int): Option[Product] = {
+    val q = "SELECT * FROM product WHERE product.id = ?;"
+    val stmt = conn.prepareStatement(q)
+    stmt.setInt(1, productId)
+    val rs = stmt.executeQuery()
+    if (!rs.next()) {
+      None
+    } else {
+      Some(_buildProductFromRs(rs))
+    }
+  }
+
+  def changeState(productId: Int, newStateId: Int): Unit = {
+    val q = "UPDATE product SET state_id = ? WHERE id = ?;"
+    val stmt = conn.prepareStatement(q)
+    stmt.setInt(1, newStateId)
+    stmt.setInt(2, productId)
+    stmt.executeUpdate()
   }
 
   private def _mapToProductList(rs: ResultSet): List[Product] = {
@@ -61,7 +87,6 @@ class ProductDAO(conn: Connection) {
   }
 
   private def _buildProductFromRs(rs: ResultSet): Product = {
-    println("_buildProductFromRs")
     new Product(
       id = Some(rs.getInt(1)),
       stateId = rs.getInt(2),
@@ -71,7 +96,7 @@ class ProductDAO(conn: Connection) {
       url = rs.getString(5),
       quantity = rs.getInt(6),
       withBox = rs.getInt(7),
-      deliveryDate = rs.getDate(8).toString,
+      deliveryDate = DateUtil.serializeDate(rs.getDate(8)),
       detail = Some(rs.getString(9)),
       image = rs.getString(10)
     )

@@ -9,4 +9,9 @@ object DateUtil {
     val df = new SimpleDateFormat("dd/mm/yyyy")
     new Date(df.parse(s).getTime())
   }
+
+  def serializeDate(d: java.sql.Date): String = {
+    val df = new SimpleDateFormat("dd/mm/yyyy")
+    df.format(d)
+  }
 }
