@@ -4,13 +4,102 @@
         <title>@title</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link rel="stylesheet" href="/stylesheets/default.css">
+        @*<link rel="stylesheet" href="/stylesheets/default.css">*@
+        <style>
+                body, html {
+                    background: #fafafa !important;
+                }
+
+                h6.page-name {
+                    text-transform: uppercase;
+                }
+
+                nav {
+                    margin-top: .5rem;
+                }
+
+                /* Courier List */
+
+                table.courier-table tr:last-child {
+                    border-bottom: none;
+                }
+
+                table.courier-table tr:last-child td {
+                    border-bottom: none;
+                }
+
+                div.courier-card-action {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                /* New Product */
+                div.new-product-header {
+                    height: 150px;
+                    background: linear-gradient(40deg, #ffd86f, #fc6262);
+                }
+
+                div.new-product-header + span.card-title {
+                    font-weight: 600;
+                    margin-left: auto;
+                    margin-right: auto;
+                    left: 0 !important;
+                    right: 0 !important;
+                    top: 0 !important;
+                    bottom: unset !important;
+                    text-align: center;
+                    font-size: 40px;
+                }
+
+                span.card-title + span.card-subtitle {
+                    position: absolute;
+                    bottom: 0;
+                    max-width: 100%;
+                    padding: 24px;
+                    margin: auto;
+                    width: 100%;
+                    text-align: center;
+                    color: white;
+                }
+
+                /* Product list */
+                div.card-image.product-image {
+                    display: flex;
+                    align-items: center;
+                }
+
+                div.card-image.product-image img {
+                    max-height: 250px;
+                    max-width: 200px !important;
+                }
+        </style>
     </head>
     <body>
         <div class="container">
         @body
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="/js/main.js"></script>
+        @*<script src="/js/main.js"></script>*@
+        <script type="text/javascript">
+                (function () {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        {
+                            const elems = document.querySelectorAll('.datepicker');
+                            const options = {
+                                format: 'dd/mm/yyyy',
+                            };
+                            const instances = M.Datepicker.init(elems, options);
+                        }
+
+                        {
+                            const elems = document.querySelectorAll('.tabs');
+                            const options = {};
+                            const instance = M.Tabs.init(elems, options);
+                        }
+                        console.log('Script initialized');
+                    });
+
+                })()
+        </script>
     </body>
 </html>
