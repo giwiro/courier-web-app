@@ -56,8 +56,8 @@ class CourierDAO(conn: Connection) {
       name = rs.getString(2),
       image = rs.getString(3),
       totalPending = Some(rs.getInt(4)),
-      totalReceived = Some(rs.getInt(4)),
-      totalDelivered = Some(rs.getInt(5)),
+      totalReceived = Some(rs.getInt(5)),
+      totalDelivered = Some(rs.getInt(6)),
     )
   }
 }

@@ -43,7 +43,11 @@ class ProductDAO(conn: Connection) {
 
   def getAllByCourier(courierId: Int, stateId: Int): List[Product] = {
     // val q = "SELECT * FROM product WHERE product.courier_id = ?;"
-    val q_state = "SELECT * FROM product WHERE product.courier_id = ? AND product.state_id = ?;"
+    val q_state =
+      """|SELECT * FROM product
+         |WHERE product.courier_id = ? AND product.state_id = ?
+         |ORDER BY product.delivery_date ASC;
+         |""".stripMargin
     val stmt = conn.prepareStatement(q_state)
     stmt.setInt(1, courierId)
     stmt.setInt(2, stateId)

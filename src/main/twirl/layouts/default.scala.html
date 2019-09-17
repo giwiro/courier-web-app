@@ -87,6 +87,7 @@
                             const elems = document.querySelectorAll('.datepicker');
                             const options = {
                                 format: 'dd/mm/yyyy',
+                                disableDayFn: (date) => date.getTime() <= Date.now()
                             };
                             const instances = M.Datepicker.init(elems, options);
                         }
