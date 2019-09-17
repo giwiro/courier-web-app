@@ -25,6 +25,12 @@
                                 <td>Delivery date</td>
                                 <td>@product.deliveryDate</td>
                             </tr>
+                            @if(!product.detail.getOrElse("").isEmpty) {
+                                <tr>
+                                    <td>Detail</td>
+                                    <td>@product.detail</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
