@@ -8,4 +8,4 @@ export PORT=6969;
 export ENV=development;
 export DATABASE_URI="jdbc:sqlite:courier.db";
 
-/bin/sbt clean compile assembly
+sbt clean compile assembly

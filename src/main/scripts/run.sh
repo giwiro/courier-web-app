@@ -8,4 +8,4 @@ export PORT=6969;
 export ENV=development;
 export DATABASE_URI="jdbc:sqlite:courier.db";
 
-/bin/java -jar "/opt/courier-web-app/target/scala-2.12/Courier Web App-assembly-0.1.0-SNAPSHOT.jar";
+java -jar "/opt/courier-web-app/target/scala-2.12/Courier Web App-assembly-0.1.0-SNAPSHOT.jar";
