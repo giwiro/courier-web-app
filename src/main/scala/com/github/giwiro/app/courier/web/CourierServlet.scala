@@ -2,9 +2,11 @@ package com.github.giwiro.app.courier.web
 
 import com.github.giwiro.app.courier.CourierUseCase
 import com.github.giwiro.model.ProductStates
+import org.scalatra.forms.FormSupport
+import org.scalatra.i18n.I18nSupport
 import org.scalatra.{BadRequest, ScalatraServlet}
 
-class CourierServlet extends ScalatraServlet {
+class CourierServlet extends ScalatraServlet with FormSupport with I18nSupport {
   post("/:courier_id/product/list/archive") {
     val courierId: Option[Int] = params.getAs[Int]("courier_id")
     if (courierId.isEmpty) {
@@ -29,14 +31,22 @@ class CourierServlet extends ScalatraServlet {
   }
 
   post("/:courier_id/product/:product_id/receive") {
-    val courierId: Option[Int] = params.getAs[Int]("courier_id")
-    val productId: Option[Int] = params.getAs[Int]("product_id")
-    if (courierId.isEmpty || productId.isEmpty) {
-      BadRequest
-    } else {
-      CourierUseCase.receiveProduct(productId.get)
-      redirect(s"/courier/${courierId.get}/product/list/pending")(request, response)
-    }
+    validate(Validator.changeStateForm)(
+      errors => {
+        errors.foreach { e => println(e) }
+        BadRequest()
+      },
+      form => {
+        val courierId: Option[Int] = params.getAs[Int]("courier_id")
+        val productId: Option[Int] = params.getAs[Int]("product_id")
+        if (courierId.isEmpty || productId.isEmpty) {
+          BadRequest
+        } else {
+          CourierUseCase.receiveProduct(productId.get)
+          redirect(s"/courier/${courierId.get}/product/list/pending#${form.scrollToProductId.get}")(request, response)
+        }
+      }
+    )
   }
 
   post("/:courier_id/product/:product_id/delete") {
@@ -51,13 +61,21 @@ class CourierServlet extends ScalatraServlet {
   }
 
   post("/:courier_id/product/:product_id/deliver") {
-    val courierId: Option[Int] = params.getAs[Int]("courier_id")
-    val productId: Option[Int] = params.getAs[Int]("product_id")
-    if (courierId.isEmpty || productId.isEmpty) {
-      BadRequest
-    } else {
-      CourierUseCase.deliverProduct(productId.get)
-      redirect(s"/courier/${courierId.get}/product/list/received")(request, response)
-    }
+    validate(Validator.changeStateForm)(
+      errors => {
+        errors.foreach { e => println(e) }
+        BadRequest()
+      },
+      form => {
+        val courierId: Option[Int] = params.getAs[Int]("courier_id")
+        val productId: Option[Int] = params.getAs[Int]("product_id")
+        if (courierId.isEmpty || productId.isEmpty) {
+          BadRequest
+        } else {
+          CourierUseCase.deliverProduct(productId.get)
+          redirect(s"/courier/${courierId.get}/product/list/received#${form.scrollToProductId.get}")(request, response)
+        }
+      }
+    )
   }
 }

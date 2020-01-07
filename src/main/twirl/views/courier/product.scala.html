@@ -1,5 +1,5 @@
 @import com.github.giwiro.model.{Product, ProductStates}
-@(product: Product)
+@(product: Product, scrollToProductId: Option[Int])
 <div id="@product.id" class="card horizontal">
     <div class="product-image card-image">
         <img src="@product.image" />
@@ -45,16 +45,18 @@
         @if(product.stateId == ProductStates.PENDING) {
             <div class="card-action courier-card-action">
                 <form action="/courier/@product.courierId/product/@product.id/receive" method="POST">
+                    <input type="hidden" name="scrollToProductId" value="@scrollToProductId">
                     <button type="submit" class="btn z-depth-0 white grey-text text-darken-3">Change to Received</button>
                 </form>
                 @*<form action="/courier/@product.courierId/product/@product.id/delete" method="POST">
-                    <button type="submit" class="btn z-depth-0 white red-text text-darken-1">Delete</button>
+                <button type="submit" class="btn z-depth-0 white red-text text-darken-1">Delete</button>
                 </form>*@
             </div>
         }
         @if(product.stateId == ProductStates.RECEIVED) {
             <div class="card-action">
                 <form action="/courier/@product.courierId/product/@product.id/deliver" method="POST">
+                    <input type="hidden" name="scrollToProductId" value="@scrollToProductId">
                     <button type="submit" class="btn z-depth-0 white grey-text text-darken-3">Change to Delivered</button>
                 </form>
             </div>
