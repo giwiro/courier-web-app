@@ -25,13 +25,13 @@
                                 <td>Delivery date</td>
                                 <td>@product.deliveryDate</td>
                             </tr>
-                            @if(!product.detail.getOrElse("").isEmpty) {
+                            @if(product.detail.orNull != null && !product.detail.getOrElse("").isEmpty) {
                                 <tr>
                                     <td>Detail</td>
                                     <td>@product.detail</td>
                                 </tr>
                             }
-                            @if(!product.owner.getOrElse("").isEmpty) {
+                            @if(product.owner.orNull != null && product.owner.getOrElse("").isEmpty) {
                                 <tr>
                                     <td>Customer</td>
                                     <td>@product.owner</td>
