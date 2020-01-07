@@ -95,7 +95,12 @@
                         {
                             const elems = document.querySelectorAll('.tabs');
                             const options = {};
-                            const instance = M.Tabs.init(elems, options);
+                            const instances = M.Tabs.init(elems, options);
+                        }
+                        {
+                            const elems = document.querySelectorAll('select');
+                            const options = {};
+                            const instances = M.FormSelect.init(elems, options);
                         }
                         console.log('Script initialized');
                     });

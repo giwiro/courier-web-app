@@ -10,4 +10,5 @@ class Product(var id: Option[Int],
               var withBox: Int,
               var deliveryDate: String,
               var detail: Option[String],
-              var image: String)
+              var image: String,
+              var owner: Option[String])

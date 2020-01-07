@@ -19,11 +19,18 @@ class CourierDAO(conn: Connection) {
     val stmt = conn.prepareStatement(q)
     stmt.setInt(1, courierId)
     val rs = stmt.executeQuery()
-    if (rs.next() == false) {
+    if (!rs.next()) {
       None
     } else {
       Some(_buildCourierFromRs(rs))
     }
+  }
+
+  def archiveDelivered(courierId: Int) = {
+    val q = "UPDATE product SET state_id = 10 WHERE courier_id = ? AND state_id = 3;"
+    val stmt = conn.prepareStatement(q)
+    stmt.setInt(1, courierId: Int)
+    stmt.executeUpdate()
   }
 
   def getAll(): List[Courier] = {

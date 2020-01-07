@@ -1,6 +1,6 @@
 @import com.github.giwiro.model.{Product, ProductStates}
 @(product: Product)
-<div class="card horizontal">
+<div id="@product.id" class="card horizontal">
     <div class="product-image card-image">
         <img src="@product.image" />
     </div>
@@ -29,6 +29,12 @@
                                 <tr>
                                     <td>Detail</td>
                                     <td>@product.detail</td>
+                                </tr>
+                            }
+                            @if(!product.owner.getOrElse("").isEmpty) {
+                                <tr>
+                                    <td>Customer</td>
+                                    <td>@product.owner</td>
                                 </tr>
                             }
                         </tbody>

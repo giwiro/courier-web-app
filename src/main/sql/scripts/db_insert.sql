@@ -9,6 +9,9 @@ VALUES (2, 'RECEIVED');
 INSERT INTO product_state (id, name)
 VALUES (3, 'DELIVERED');
 
+INSERT INTO product_state (id, name)
+VALUES (10, 'ARCHIVED');
+
 /* courier */
 /*
 https://picsum.photos/id/1018/3914/2935

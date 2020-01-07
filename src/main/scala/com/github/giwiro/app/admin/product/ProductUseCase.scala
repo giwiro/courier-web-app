@@ -32,7 +32,8 @@ object ProductUseCase {
           withBox = request.withBox,
           deliveryDate = request.deliveryDate,
           detail = request.detail,
-          image = request.image)
+          image = request.image,
+          owner = Some(request.owner))
         val inserted = productDAO.insert(product)
         new AddProductResponse(inserted)
     }

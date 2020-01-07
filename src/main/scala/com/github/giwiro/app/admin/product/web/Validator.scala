@@ -9,7 +9,8 @@ case class NewCourierPageValidation(val name: String,
                                     val withBox: Option[String],
                                     val deliveryDate: String,
                                     val detail: Option[String],
-                                    val image: String)
+                                    val image: String,
+                                    val owner: String)
 
 object Validator {
   val newCourierPageForm = mapping(
@@ -21,5 +22,6 @@ object Validator {
     "deliveryDate" -> label("deliveryDate", text(required)),
     "detail" -> label("detail", optional(text())),
     "image" -> label("image", text(required)),
+    "owner" -> label("owner", text(required)),
   )(NewCourierPageValidation.apply)
 }

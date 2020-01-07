@@ -46,7 +46,8 @@ class ProductServlet extends ScalatraServlet with FormSupport with I18nSupport {
             },
             form.deliveryDate,
             form.detail,
-            form.image)
+            form.image,
+            form.owner)
           val resp = ProductUseCase.addProduct(req)
           redirect(s"/courier/${resp.product.courierId}/product/list/pending")(request, response)
         }

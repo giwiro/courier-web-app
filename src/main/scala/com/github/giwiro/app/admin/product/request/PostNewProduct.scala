@@ -7,4 +7,5 @@ class PostNewProduct(val courierId: Int,
                      val withBox: Int,
                      val deliveryDate: String,
                      val detail: Option[String],
-                     val image: String)
+                     val image: String,
+                     val owner: String)

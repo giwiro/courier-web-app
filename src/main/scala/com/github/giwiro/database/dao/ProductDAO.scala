@@ -9,8 +9,8 @@ import com.mchange.v2.c3p0.C3P0ProxyStatement
 class ProductDAO(conn: Connection) {
   def insert(product: Product): Product = {
     val q =
-      """|INSERT INTO product (state_id, courier_id, name, url, quantity, with_box, delivery_date, detail, image)
-         |VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+      """|INSERT INTO product (state_id, courier_id, name, url, quantity, with_box, delivery_date, detail, image, owner)
+         |VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          |""".stripMargin
     val stmt = conn.prepareStatement(q)
     stmt.setInt(1, product.stateId)
@@ -22,6 +22,7 @@ class ProductDAO(conn: Connection) {
     stmt.setDate(7, DateUtil.parseDate(product.deliveryDate))
     stmt.setString(8, product.detail.getOrElse(""))
     stmt.setString(9, product.image)
+    stmt.setString(10, product.owner.getOrElse(""))
 
     val rows: Int = stmt.executeUpdate()
     val generatedKeys = stmt.getGeneratedKeys()
@@ -38,7 +39,8 @@ class ProductDAO(conn: Connection) {
       withBox = product.withBox,
       deliveryDate = product.deliveryDate,
       detail = product.detail,
-      image = product.image)
+      image = product.image,
+      owner = product.owner)
   }
 
   def getAllByCourier(courierId: Int, stateId: Int): List[Product] = {
@@ -102,7 +104,8 @@ class ProductDAO(conn: Connection) {
       withBox = rs.getInt(7),
       deliveryDate = DateUtil.serializeDate(rs.getDate(8)),
       detail = Some(rs.getString(9)),
-      image = rs.getString(10)
+      image = rs.getString(10),
+      owner = Some(rs.getString(11))
     )
   }
 }
