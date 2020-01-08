@@ -1,12 +1,15 @@
 @import com.github.giwiro.model.{Product, ProductStates}
-@(product: Product, scrollToProductId: Option[Int])
+@(product: Product, courierId: Int, scrollToProductId: Option[Int])
 <div id="@product.id" class="card horizontal">
     <div class="product-image card-image">
         <img src="@product.image" />
     </div>
     <div class="card-stacked">
         <div class="card-content">
-            <span class="card-title">@product.name</span>
+            <a href="@product.url" rel="nofollow noopener nofollow" target="_blank" class="card-title">@product.name</a>
+            @if(product.stateId != ProductStates.DELIVERED) {
+                <a class="btn-floating" target="_self" href="/admin/product/edit/@product.id/courier/@courierId"><i class="material-icons">edit</i></a>
+            }
             <div class="row">
                 <div class="col s12 m6">
                     <table class="responsive-table">
@@ -31,7 +34,7 @@
                                     <td>@product.detail</td>
                                 </tr>
                             }
-                            @if(product.owner.orNull != null && product.owner.getOrElse("").isEmpty) {
+                            @if(product.owner.orNull != null && !product.owner.getOrElse("").isEmpty) {
                                 <tr>
                                     <td>Customer</td>
                                     <td>@product.owner</td>

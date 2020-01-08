@@ -22,13 +22,13 @@
             @for((p, index) <- productList.zipWithIndex) {
                 @if(index + 1 < productList.size) {
 @*                    <b>Next!!!: @productList(index + 1).id</b>*@
-                    @views.html.courier.product(p, productList(index + 1).id)
+                    @views.html.courier.product(p, courierId, productList(index + 1).id)
                 }else {
                     @if((index + 1 == productList.size) && index - 1 > 0) {
 @*                        <b>Prev!!!: @productList(index - 1).id</b>*@
-                        @views.html.courier.product(p, productList(index - 1).id)
+                        @views.html.courier.product(p, courierId, productList(index - 1).id)
                     }else {
-                        @views.html.courier.product(p, null)
+                        @views.html.courier.product(p, courierId, null)
                     }
                 }
             }

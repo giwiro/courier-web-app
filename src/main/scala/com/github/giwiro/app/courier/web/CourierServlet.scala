@@ -43,7 +43,12 @@ class CourierServlet extends ScalatraServlet with FormSupport with I18nSupport {
           BadRequest
         } else {
           CourierUseCase.receiveProduct(productId.get)
-          redirect(s"/courier/${courierId.get}/product/list/pending#${form.scrollToProductId.get}")(request, response)
+          val extra_hash = form.scrollToProductId match {
+            case None => ""
+            case null => ""
+            case default => s"#${form.scrollToProductId.get}"
+          }
+          redirect(s"/courier/${courierId.get}/product/list/pending${extra_hash}")(request, response)
         }
       }
     )
@@ -73,7 +78,12 @@ class CourierServlet extends ScalatraServlet with FormSupport with I18nSupport {
           BadRequest
         } else {
           CourierUseCase.deliverProduct(productId.get)
-          redirect(s"/courier/${courierId.get}/product/list/received#${form.scrollToProductId.get}")(request, response)
+          val extra_hash = form.scrollToProductId match {
+            case None => ""
+            case null => ""
+            case default => s"#${form.scrollToProductId.get}"
+          }
+          redirect(s"/courier/${courierId.get}/product/list/received${extra_hash}")(request, response)
         }
       }
     )
