@@ -43,12 +43,23 @@ object CourierUseCase {
         productDAO.deleteProduct(productId)
     }
 
-  def deliverProduct(productId: Int): Unit =
+  def checkProduct(productId: Int): Unit =
     DatabaseConnectionSupport.withDatabaseConnection[Unit] {
       conn: Connection =>
         val productDAO = new ProductDAO(conn)
         val product: Option[Product] = productDAO.getBytId(productId)
         if (product.isDefined && product.get.id.isDefined && product.get.stateId == ProductStates.RECEIVED) {
+          val productDAO = new ProductDAO(conn)
+          productDAO.changeState(productId, ProductStates.CHECKED)
+        }
+    }
+
+  def deliverProduct(productId: Int): Unit =
+    DatabaseConnectionSupport.withDatabaseConnection[Unit] {
+      conn: Connection =>
+        val productDAO = new ProductDAO(conn)
+        val product: Option[Product] = productDAO.getBytId(productId)
+        if (product.isDefined && product.get.id.isDefined && product.get.stateId == ProductStates.CHECKED) {
           val productDAO = new ProductDAO(conn)
           productDAO.changeState(productId, ProductStates.DELIVERED)
         }

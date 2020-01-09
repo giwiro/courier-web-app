@@ -59,10 +59,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="detail" name="detail" type="text" class="materialize-textarea validate">
-                @if(product != null) {
-                    @product.get.detail
-                }</textarea>
+                <textarea id="detail" name="detail" type="text" class="materialize-textarea validate">@if(product != null) { @product.get.detail }</textarea>
                 <label for="detail">Detail</label>
             </div>
         </div>

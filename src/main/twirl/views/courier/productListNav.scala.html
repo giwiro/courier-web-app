@@ -1,5 +1,5 @@
 @import com.github.giwiro.model.Courier
-@(courierId: Int,  courier: Courier, activeTab: String)
+@(courierId: Int, courier: Courier, activeTab: String)
 
 <nav class="nav-extended">
     <div class="nav-wrapper">
@@ -22,6 +22,13 @@
                 <a target="_self" class="active" href="/courier/@courierId/product/list/received">Received</a>
             } else {
                 <a target="_self" href="/courier/@courierId/product/list/received">Received</a>
+            }
+            </li>
+            <li class="tab col s3">
+            @if(activeTab == "checked") {
+                <a target="_self" class="active" href="/courier/@courierId/product/list/checked">Checked</a>
+            } else {
+                <a target="_self" href="/courier/@courierId/product/list/checked">Checked</a>
             }
             </li>
             <li class="tab col s3">

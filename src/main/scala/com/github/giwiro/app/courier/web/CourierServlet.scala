@@ -65,6 +65,30 @@ class CourierServlet extends ScalatraServlet with FormSupport with I18nSupport {
     }
   }
 
+  post("/:courier_id/product/:product_id/check") {
+    validate(Validator.changeStateForm)(
+      errors => {
+        errors.foreach { e => println(e) }
+        BadRequest()
+      },
+      form => {
+        val courierId: Option[Int] = params.getAs[Int]("courier_id")
+        val productId: Option[Int] = params.getAs[Int]("product_id")
+        if (courierId.isEmpty || productId.isEmpty) {
+          BadRequest
+        } else {
+          CourierUseCase.checkProduct(productId.get)
+          val extra_hash = form.scrollToProductId match {
+            case None => ""
+            case null => ""
+            case default => s"#${form.scrollToProductId.get}"
+          }
+          redirect(s"/courier/${courierId.get}/product/list/received${extra_hash}")(request, response)
+        }
+      }
+    )
+  }
+
   post("/:courier_id/product/:product_id/deliver") {
     validate(Validator.changeStateForm)(
       errors => {
@@ -83,7 +107,7 @@ class CourierServlet extends ScalatraServlet with FormSupport with I18nSupport {
             case null => ""
             case default => s"#${form.scrollToProductId.get}"
           }
-          redirect(s"/courier/${courierId.get}/product/list/received${extra_hash}")(request, response)
+          redirect(s"/courier/${courierId.get}/product/list/checked${extra_hash}")(request, response)
         }
       }
     )
