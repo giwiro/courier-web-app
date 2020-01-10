@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat
 
 object DateUtil {
   def parseDate(s: String): java.sql.Date = {
-    val df = new SimpleDateFormat("dd/mm/yyyy")
+    val df = new SimpleDateFormat("dd/MM/yyyy")
     new Date(df.parse(s).getTime())
   }
 
   def serializeDate(d: java.sql.Date): String = {
-    val df = new SimpleDateFormat("dd/mm/yyyy")
+    val df = new SimpleDateFormat("dd/MM/yyyy")
     df.format(d)
   }
 }
